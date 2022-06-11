@@ -1,0 +1,52 @@
+<?php
+	
+	 class Solution{
+	   public function solution($arr = []){
+	     $len=count($arr);
+	     $cno=0;
+	     $newArr=[];
+	     
+	     for ($i=0; $i < $len ; $i++ ){
+	        $val=$arr[$i];
+	        if (is_numeric($val)){
+	          $newArr[$cno]=$val;
+	          $cno++;
+	        } else{
+	          $str=strtoupper($val);
+	          switch($str){
+	            case "D":
+	              $newNo=$newArr[$cno - 1] * 2;
+	              $newArr[$cno]= $newNo;
+	              $cno++;
+	              break;
+	           case "C":
+	              $newArr[]=array_pop($newArr);
+	              $cno--;
+	              break;
+	           case "+":
+	              $newNo=$newArr[$cno - 1] + $newArr[$cno - 2];
+	              $newArr[$cno]= $newNo;
+	              $cno++;
+	              break;
+	           default:
+	              break;
+	              
+	          }
+	        }
+	        
+	     }
+	     
+	     $sum = array_sum($newArr);
+	     
+	     return $sum;
+	   }
+	 }
+	
+	$str="52CD+n";
+	$arr=str_split($str);
+	
+	$obj=new Solution();
+	$output=$obj->solution($arr);
+	
+	print_r ($output);
+?>

@@ -1,0 +1,56 @@
+<?php
+	
+	$str='';
+	function cutArr($arr,$str){
+	  $i=0; $word='';
+	  //print_r($arr);
+	  $arrLen=count($arr);
+	  
+	  $tempArr=[]; $j=0;
+	  while($i < $arrLen){
+	    if($arrLen == 1){
+	      $word=$arr[$i];
+	      $str=$str.$word;
+	      
+	      $tempArr=[];
+	      $i++;
+	    }
+	    else{
+	      $word=$arr[$i];
+	      //print_r($word."\n");
+	      $temp=str_split($word,1);
+	      $str=$str.array_shift($temp);
+	      if(count($temp) != 0){
+	        $word=join("",$temp);
+	      
+	        //print_r("\n".$word);
+	    
+	        $tempArr[$j]=$word;
+	        //print_r($tempArr);
+	      
+	        $j++;
+	      }
+	    
+	    
+	      $i++;
+	    }
+	    
+	  }
+	  
+	  print_r($tempArr);
+	  $newLen=count($tempArr);
+	  if($newLen > 0){
+	    cutArr($tempArr,$str);
+	  }else{
+	    echo ("\n".$str);
+	  }
+	  
+	  //echo ("\n".$str);
+	}
+	
+	$arr = ["Daisy","Rose", "Hyacinth", "Poppy"];
+  cutArr($arr,$str);
+  
+  //the output should be solution(arr) = "DRHPaoyoisapsecpyiynth".
+	
+?>
